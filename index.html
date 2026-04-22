@@ -18,24 +18,8 @@
     }
     body { font-family: 'Epilogue', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.55; }
 
-    /* CONFIG */
-    #config-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
-    .config-card { background: var(--bg2); border: 1px solid var(--line2); border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 460px; }
-    .config-logo { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
-    .config-logo span { color: var(--accent); }
-    .config-sub { font-size: 13px; color: var(--text2); margin-bottom: 2rem; line-height: 1.6; }
-    .field { margin-bottom: 1.25rem; }
-    .field label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text3); font-weight: 500; margin-bottom: 0.5rem; }
-    .field input { width: 100%; background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--r-sm); color: var(--text); font-family: monospace; font-size: 13px; padding: 0.65rem 0.85rem; outline: none; transition: border-color 0.15s; }
-    .field input:focus { border-color: var(--accent); }
-    .field-hint { font-size: 11px; color: var(--text3); margin-top: 0.4rem; line-height: 1.6; }
-    .field-hint a { color: var(--accent); text-decoration: none; }
-    .btn-go { width: 100%; background: var(--accent); color: #0F0F0E; border: none; border-radius: var(--r-sm); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; padding: 0.75rem; cursor: pointer; transition: opacity 0.15s, transform 0.1s; margin-top: 0.5rem; }
-    .btn-go:hover { opacity: 0.85; } .btn-go:active { transform: scale(0.98); } .btn-go:disabled { opacity: 0.45; cursor: not-allowed; }
-    .config-err { background: rgba(255,95,74,0.10); border: 1px solid rgba(255,95,74,0.28); border-radius: var(--r-sm); color: var(--red); font-size: 12px; padding: 0.65rem 0.85rem; margin-top: 1rem; display: none; line-height: 1.5; }
-
     /* APP */
-    #app { display: none; min-height: 100vh; }
+    #app { display: block; min-height: 100vh; }
     .header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.75rem; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(15,15,14,0.93); backdrop-filter: blur(12px); z-index: 10; }
     .brand { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
     .brand span { color: var(--accent); }
@@ -45,6 +29,8 @@
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
     .btn-reset { font-size: 12px; color: var(--text3); background: none; border: 1px solid var(--line2); border-radius: var(--r-sm); padding: 0.35rem 0.75rem; cursor: pointer; font-family: 'Epilogue', sans-serif; transition: all 0.15s; }
     .btn-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.22); }
+    .btn-reload { font-size: 12px; color: var(--accent); background: var(--accent-dim); border: 1px solid rgba(212,255,79,0.22); border-radius: var(--r-sm); padding: 0.35rem 0.75rem; cursor: pointer; font-family: 'Epilogue', sans-serif; transition: all 0.15s; }
+    .btn-reload:hover { background: var(--accent-dim2); }
     .layout { display: flex; min-height: calc(100vh - 57px); }
 
     /* SIDEBAR */
@@ -88,7 +74,8 @@
     .state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5rem 2rem; color: var(--text3); text-align: center; gap: 0.65rem; }
     .state-icon { font-size: 28px; opacity: 0.4; }
     .state-t { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--text2); }
-    .state-s { font-size: 13px; }
+    .state-s { font-size: 13px; max-width: 380px; line-height: 1.6; }
+    .state-s a { color: var(--accent); text-decoration: none; }
     .spinner { width: 26px; height: 26px; border: 2px solid var(--line2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
@@ -97,28 +84,12 @@
 </head>
 <body>
 
-<div id="config-screen">
-  <div class="config-card">
-    <div class="config-logo">ISRI <span>·</span> Sélecteur de bornes</div>
-    <p class="config-sub">Connectez-vous avec votre token d'intégration Notion pour accéder à la base produits en temps réel.</p>
-    <div class="field">
-      <label>Token d'intégration Notion</label>
-      <input type="password" id="token-input" placeholder="secret_xxxx… ou ntn_xxxx…" autocomplete="off" />
-      <p class="field-hint">
-        Créez une intégration sur <a href="https://www.notion.so/my-integrations" target="_blank">notion.so/my-integrations</a> et partagez la base "Modèles" avec elle.<br>
-        Le token ne quitte jamais votre navigateur.
-      </p>
-    </div>
-    <button class="btn-go" id="btn-go" onclick="startApp()">Accéder au sélecteur →</button>
-    <div class="config-err" id="err-box"></div>
-  </div>
-</div>
-
 <div id="app">
   <header class="header">
     <div class="brand">ISRI <span>·</span> Sélecteur de bornes</div>
     <div class="header-right">
-      <div class="live"><div class="dot"></div><span id="sync-txt">Données en direct</span></div>
+      <div class="live"><div class="dot"></div><span id="sync-txt">Chargement…</span></div>
+      <button class="btn-reload" onclick="loadData()">↺ Actualiser</button>
       <button class="btn-reset" onclick="resetAll()">Réinitialiser</button>
     </div>
   </header>
@@ -151,131 +122,179 @@
     </aside>
     <main class="main">
       <div class="results-bar">
-        <div class="count" id="count">—<small>bornes</small></div>
+        <div class="count" id="count">—<small> bornes</small></div>
       </div>
       <div id="container">
-        <div class="state"><div class="spinner"></div><div class="state-t">Chargement…</div></div>
+        <div class="state"><div class="spinner"></div><div class="state-t">Connexion à Notion…</div></div>
       </div>
     </main>
   </div>
 </div>
 
 <script>
-// ─── CONFIGURATION ─────────────────────────────────────────────────────────
-// Remplacez cette valeur par l'ID de votre base Notion "Modèles"
-// L'ID se trouve dans l'URL de la base : notion.so/xxx/[ID-ICI]?v=...
-const DB_ID = '7b33d394f58d827997a387eed7a3a2c0';
+// ─── CONFIG ────────────────────────────────────────────────────────────────
+// Nom exact de la base Notion à rechercher
+const DB_NAME = 'Bornes';
 
-// Proxy CORS : contourne la restriction de Notion côté navigateur.
-// Ce proxy open-source (corsproxy.io) transmet votre requête à Notion
-// sans stocker ni lire vos données. Votre token voyage uniquement
-// entre votre navigateur et Notion via ce relais HTTPS chiffré.
-const PROXY = 'https://corsproxy.io/?';
+// MCP Notion via API Anthropic — aucun token requis dans le navigateur
+const API_URL = 'https://api.anthropic.com/v1/messages';
+const MCP_SERVER = { type: 'url', url: 'https://mcp.notion.com/mcp', name: 'notion' };
 // ───────────────────────────────────────────────────────────────────────────
 
-let token = '';
 let products = [];
 let activeTags = new Set();
+let dbId = null;
 
-async function startApp() {
-  const inp = document.getElementById('token-input');
-  token = inp.value.trim();
-  if (!token.startsWith('secret_') && !token.startsWith('ntn_')) {
-    showErr("Le token doit commencer par 'secret_' ou 'ntn_'. Vérifiez votre intégration Notion.");
-    return;
+async function callClaude(userPrompt, systemPrompt) {
+  const body = {
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: 8000,
+    system: systemPrompt || 'You are a helpful assistant.',
+    messages: [{ role: 'user', content: userPrompt }],
+    mcp_servers: [MCP_SERVER]
+  };
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const e = await res.json().catch(() => ({}));
+    throw new Error(e.error?.message || `HTTP ${res.status}`);
   }
-  const btn = document.getElementById('btn-go');
-  btn.disabled = true; btn.textContent = 'Connexion…';
-  hideErr();
-
-  const ok = await fetchAllProducts();
-  if (!ok) { btn.disabled = false; btn.textContent = 'Accéder au sélecteur →'; return; }
-
-  document.getElementById('config-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  document.getElementById('sync-txt').textContent = `${products.length} bornes · temps réel`;
-  populateFilters();
-  buildTags();
-  applyFilters();
+  return res.json();
 }
 
-function showErr(msg) { const e = document.getElementById('err-box'); e.textContent = msg; e.style.display = 'block'; }
-function hideErr() { document.getElementById('err-box').style.display = 'none'; }
+function extractText(data) {
+  return (data.content || [])
+    .filter(b => b.type === 'text')
+    .map(b => b.text)
+    .join('\n');
+}
 
-async function fetchAllProducts() {
+function extractJSON(text) {
+  // Cherche le premier bloc JSON valide dans le texte
+  const match = text.match(/```json\s*([\s\S]*?)```/) || text.match(/(\[[\s\S]*\]|\{[\s\S]*\})/);
+  if (!match) return null;
+  try { return JSON.parse(match[1] || match[0]); } catch { return null; }
+}
+
+async function loadData() {
+  setLoading('Recherche de la base "' + DB_NAME + '" dans Notion…');
+
   try {
-    let results = [], cursor = null, hasMore = true;
-    while (hasMore) {
-      const body = { page_size: 100 };
-      if (cursor) body.start_cursor = cursor;
+    // Étape 1 : chercher la base
+    const searchData = await callClaude(
+      `Recherche dans Notion une base de données dont le titre contient "${DB_NAME}". Retourne uniquement l'ID de cette base en JSON: {"database_id": "xxx"}`,
+      'Tu es un assistant qui interroge Notion via MCP. Réponds uniquement en JSON valide, sans texte autour.'
+    );
+    const searchText = extractText(searchData);
+    const searchJSON = extractJSON(searchText);
 
-      const notionUrl = `https://api.notion.com/v1/databases/${DB_ID}/query`;
-      const res = await fetch(PROXY + encodeURIComponent(notionUrl), {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Notion-Version': '2022-06-28',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      });
+    if (!searchJSON?.database_id) {
+      // Essai alternatif : chercher directement
+      setLoading('Recherche dans toutes les bases disponibles…');
+      const listData = await callClaude(
+        `Liste toutes les bases de données Notion disponibles et retourne leur titre et ID en JSON: [{"id": "xxx", "title": "yyy"}, ...]`,
+        'Tu es un assistant qui interroge Notion via MCP. Réponds uniquement en JSON valide, sans texte autour.'
+      );
+      const listText = extractText(listData);
+      const listJSON = extractJSON(listText);
 
-      if (!res.ok) {
-        let errMsg = `Erreur ${res.status}`;
-        try { const e = await res.json(); errMsg = e.message || errMsg; } catch(_) {}
-        if (res.status === 401) showErr("Token invalide ou accès refusé. Vérifiez que l'intégration a bien accès à la base 'Modèles'.");
-        else if (res.status === 404) showErr("Base introuvable. Vérifiez que l'intégration est partagée avec la page 'Recap bornes ISRI'.");
-        else showErr(`Erreur Notion (${res.status}) : ${errMsg}`);
-        return false;
+      if (!Array.isArray(listJSON) || listJSON.length === 0) {
+        showError('Impossible de trouver la base "' + DB_NAME + '" dans Notion.', 'Vérifiez que l\'intégration Notion est bien connectée et partagée avec la base "' + DB_NAME + '".');
+        return;
       }
 
-      const data = await res.json();
-      results = results.concat(data.results || []);
-      hasMore = data.has_more;
-      cursor = data.next_cursor;
+      const match = listJSON.find(db => db.title && db.title.toLowerCase().includes(DB_NAME.toLowerCase()));
+      if (!match) {
+        const names = listJSON.map(d => d.title || d.id).join(', ');
+        showError('Base "' + DB_NAME + '" introuvable.', 'Bases disponibles : ' + names + '. Vérifiez le nom exact dans le code (constante DB_NAME).');
+        return;
+      }
+      dbId = match.id;
+    } else {
+      dbId = searchJSON.database_id;
     }
-    products = results.map(parseProduct);
-    return true;
-  } catch(e) {
-    showErr("Erreur réseau. Vérifiez votre connexion internet.");
-    console.error(e);
-    return false;
+
+    // Étape 2 : récupérer les entrées
+    setLoading('Chargement des bornes depuis Notion…');
+    const dataResp = await callClaude(
+      `Récupère TOUTES les entrées de la base Notion avec l'ID "${dbId}". Pour chaque entrée, extrait les propriétés suivantes (adaptant les noms exacts si nécessaire) :
+- Nom/titre du produit
+- Catégorie (select)
+- Niveau (select) 
+- Fournisseur (select)
+- Caractéristiques (multi_select)
+- Hauteur en mm (number)
+- Kj (number)
+- Profondeur en mm (number)
+- Diamètre en mm (number)
+- Informations (rich_text)
+
+Retourne un tableau JSON avec cette structure exacte :
+[{"title":"...","categorie":"...","niveau":"...","fournisseur":"...","caracteristiques":["..."],"hauteur":null,"kj":null,"profondeur":null,"diametre":null,"informations":"..."}]
+
+Inclus TOUTES les entrées, pas de limite. Si une valeur est absente, mets null ou "".`,
+      'Tu es un assistant qui interroge Notion via MCP. Réponds uniquement avec le tableau JSON demandé, sans texte autour.'
+    );
+
+    const dataText = extractText(dataResp);
+    const parsed = extractJSON(dataText);
+
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      showError('Aucune borne trouvée dans la base.', 'La base "' + DB_NAME + '" existe mais semble vide, ou les données n\'ont pas pu être lues.');
+      return;
+    }
+
+    products = parsed;
+    document.getElementById('sync-txt').textContent = `${products.length} bornes · Notion`;
+    populateFilters();
+    buildTags();
+    applyFilters();
+
+  } catch (err) {
+    console.error(err);
+    showError('Erreur lors du chargement.', err.message || 'Vérifiez que le connecteur Notion est activé dans Claude.ai (Outils → Notion).');
   }
 }
 
-function parseProduct(page) {
-  const p = page.properties;
-  const s  = k => p[k]?.select?.name || '';
-  const ms = k => (p[k]?.multi_select || []).map(t => t.name);
-  const n  = k => p[k]?.number ?? null;
-  const t  = k => p[k]?.title?.[0]?.plain_text || '';
-  const rt = k => p[k]?.rich_text?.[0]?.plain_text || '';
-  return {
-    title: t('Nom du produit') || t('Name') || t('Titre') || '—',
-    categorie: s('Catégorie') || s('Categorie'),
-    niveau: s('Niveau'),
-    fournisseur: s('Fournisseur'),
-    caracteristiques: ms('Caractéristiques') || ms('Caracteristiques'),
-    hauteur: n('Hauteur'), kj: n('Kj'), profondeur: n('Profondeur'), diametre: n('Diamètre'),
-    informations: rt('Informations')
-  };
+function setLoading(msg) {
+  document.getElementById('container').innerHTML = `<div class="state"><div class="spinner"></div><div class="state-t">${msg}</div></div>`;
+  document.getElementById('count').innerHTML = `—<small> bornes</small>`;
 }
 
-// Remplir les selects dynamiquement depuis les données réelles
+function showError(title, detail) {
+  document.getElementById('sync-txt').textContent = 'Erreur';
+  document.getElementById('container').innerHTML = `
+    <div class="state">
+      <div class="state-icon">⚠</div>
+      <div class="state-t">${title}</div>
+      <div class="state-s">${detail}<br><br>
+        <a href="#" onclick="loadData(); return false;">↺ Réessayer</a>
+      </div>
+    </div>`;
+}
+
 function populateFilters() {
   const cats = [...new Set(products.map(p => p.categorie).filter(Boolean))].sort();
   const nivs = [...new Set(products.map(p => p.niveau).filter(Boolean))].sort();
   const fous = [...new Set(products.map(p => p.fournisseur).filter(Boolean))].sort();
   const fill = (id, vals) => {
     const sel = document.getElementById(id);
+    sel.innerHTML = '<option value="">Toutes</option>';
     vals.forEach(v => { const o = document.createElement('option'); o.value = o.textContent = v; sel.appendChild(o); });
   };
-  fill('f-cat', cats); fill('f-niv', nivs); fill('f-fou', fous);
+  fill('f-cat', cats);
+  document.getElementById('f-cat').querySelector('option').textContent = 'Toutes';
+  fill('f-niv', nivs);
+  document.getElementById('f-niv').querySelector('option').textContent = 'Tous';
+  fill('f-fou', fous);
+  document.getElementById('f-fou').querySelector('option').textContent = 'Tous';
 }
 
-// Construire les tags depuis les données réelles
 function buildTags() {
-  const allCarac = [...new Set(products.flatMap(p => p.caracteristiques))].sort();
+  const allCarac = [...new Set(products.flatMap(p => Array.isArray(p.caracteristiques) ? p.caracteristiques : []))].sort();
   const wrap = document.getElementById('tags-wrap');
   wrap.innerHTML = '';
   allCarac.forEach(c => {
@@ -297,7 +316,10 @@ function applyFilters() {
     if (cat && p.categorie !== cat) return false;
     if (niv && p.niveau !== niv) return false;
     if (fou && p.fournisseur !== fou) return false;
-    if (tags.length && !tags.every(t => p.caracteristiques.includes(t))) return false;
+    if (tags.length) {
+      const caracs = Array.isArray(p.caracteristiques) ? p.caracteristiques : [];
+      if (!tags.every(t => caracs.includes(t))) return false;
+    }
     return true;
   });
 
@@ -324,11 +346,17 @@ function render(list, tags) {
     return;
   }
   el.innerHTML = `<div class="grid">${list.map((p, i) => {
-    const specs = [p.hauteur && `<span class="spec"><b>${p.hauteur} mm</b> haut.</span>`, p.kj && `<span class="spec"><b>${p.kj} kJ</b></span>`, p.profondeur && `<span class="spec"><b>${p.profondeur} mm</b> prof.</span>`, p.diametre && `<span class="spec"><b>⌀${p.diametre} mm</b></span>`].filter(Boolean).join('');
-    const ctags = p.caracteristiques.map(c => `<span class="ctag ${tags.includes(c) ? 'm' : ''}">${c}</span>`).join('');
+    const specs = [
+      p.hauteur && `<span class="spec"><b>${p.hauteur} mm</b> haut.</span>`,
+      p.kj && `<span class="spec"><b>${p.kj} kJ</b></span>`,
+      p.profondeur && `<span class="spec"><b>${p.profondeur} mm</b> prof.</span>`,
+      p.diametre && `<span class="spec"><b>⌀${p.diametre} mm</b></span>`
+    ].filter(Boolean).join('');
+    const caracs = Array.isArray(p.caracteristiques) ? p.caracteristiques : [];
+    const ctags = caracs.map(c => `<span class="ctag ${tags.includes(c) ? 'm' : ''}">${c}</span>`).join('');
     const meta = [p.categorie, p.fournisseur].filter(Boolean).join(' · ');
     return `<div class="card" style="animation-delay:${Math.min(i*0.03,0.45)}s">
-      <div class="card-top"><div class="card-name">${p.title}</div>${p.niveau ? `<span class="nbadge ${nCls[p.niveau]||''}">${p.niveau}</span>` : ''}</div>
+      <div class="card-top"><div class="card-name">${p.title || '—'}</div>${p.niveau ? `<span class="nbadge ${nCls[p.niveau]||''}">${p.niveau}</span>` : ''}</div>
       ${meta ? `<div class="card-meta">${meta}</div>` : ''}
       ${specs ? `<div class="card-specs">${specs}</div>` : ''}
       ${ctags ? `<div class="card-tags">${ctags}</div>` : ''}
@@ -337,7 +365,8 @@ function render(list, tags) {
   }).join('')}</div>`;
 }
 
-document.getElementById('token-input').addEventListener('keydown', e => { if (e.key === 'Enter') startApp(); });
+// Démarrage automatique
+loadData();
 </script>
 </body>
 </html>
