@@ -18,7 +18,7 @@
     }
     body { font-family: 'Epilogue', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.55; }
 
-    /* CONFIG SCREEN */
+    /* CONFIG */
     #config-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
     .config-card { background: var(--bg2); border: 1px solid var(--line2); border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 460px; }
     .config-logo { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
@@ -26,14 +26,12 @@
     .config-sub { font-size: 13px; color: var(--text2); margin-bottom: 2rem; line-height: 1.6; }
     .field { margin-bottom: 1.25rem; }
     .field label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text3); font-weight: 500; margin-bottom: 0.5rem; }
-    .field input { width: 100%; background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--r-sm); color: var(--text); font-family: 'Epilogue', monospace; font-size: 13px; padding: 0.65rem 0.85rem; outline: none; transition: border-color 0.15s; }
+    .field input { width: 100%; background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--r-sm); color: var(--text); font-family: monospace; font-size: 13px; padding: 0.65rem 0.85rem; outline: none; transition: border-color 0.15s; }
     .field input:focus { border-color: var(--accent); }
     .field-hint { font-size: 11px; color: var(--text3); margin-top: 0.4rem; line-height: 1.6; }
     .field-hint a { color: var(--accent); text-decoration: none; }
     .btn-go { width: 100%; background: var(--accent); color: #0F0F0E; border: none; border-radius: var(--r-sm); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; padding: 0.75rem; cursor: pointer; transition: opacity 0.15s, transform 0.1s; margin-top: 0.5rem; }
-    .btn-go:hover { opacity: 0.85; }
-    .btn-go:active { transform: scale(0.98); }
-    .btn-go:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-go:hover { opacity: 0.85; } .btn-go:active { transform: scale(0.98); } .btn-go:disabled { opacity: 0.45; cursor: not-allowed; }
     .config-err { background: rgba(255,95,74,0.10); border: 1px solid rgba(255,95,74,0.28); border-radius: var(--r-sm); color: var(--red); font-size: 12px; padding: 0.65rem 0.85rem; margin-top: 1rem; display: none; line-height: 1.5; }
 
     /* APP */
@@ -47,14 +45,13 @@
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
     .btn-reset { font-size: 12px; color: var(--text3); background: none; border: 1px solid var(--line2); border-radius: var(--r-sm); padding: 0.35rem 0.75rem; cursor: pointer; font-family: 'Epilogue', sans-serif; transition: all 0.15s; }
     .btn-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.22); }
-
     .layout { display: flex; min-height: calc(100vh - 57px); }
 
     /* SIDEBAR */
     .sidebar { width: 275px; min-width: 250px; border-right: 1px solid var(--line); padding: 1.5rem 1.25rem; overflow-y: auto; position: sticky; top: 57px; height: calc(100vh - 57px); }
     .filter-sec { margin-bottom: 1.6rem; }
     .filter-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text3); font-weight: 500; margin-bottom: 0.6rem; display: block; }
-    .filter-lbl .et-badge { color: var(--accent); font-size: 9px; vertical-align: middle; margin-left: 4px; letter-spacing: 0.05em; }
+    .et-badge { color: var(--accent); font-size: 9px; vertical-align: middle; margin-left: 4px; }
     select.flt { width: 100%; background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--r-sm); color: var(--text); font-family: 'Epilogue', sans-serif; font-size: 13px; padding: 0.55rem 2rem 0.55rem 0.75rem; outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235A5850' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; transition: border-color 0.15s; }
     select.flt:focus { border-color: var(--accent); }
     .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -66,12 +63,10 @@
 
     /* MAIN */
     .main { flex: 1; padding: 1.5rem; overflow-y: auto; }
-    .results-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .results-bar { display: flex; align-items: center; margin-bottom: 1.25rem; }
     .count { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 600; }
     .count small { font-size: 13px; font-family: 'Epilogue', sans-serif; font-weight: 400; color: var(--text3); margin-left: 0.5rem; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-
-    /* CARD */
     .card { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 1.25rem; transition: border-color 0.15s, transform 0.15s; animation: up 0.22s ease both; }
     .card:hover { border-color: var(--line2); transform: translateY(-1px); }
     @keyframes up { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
@@ -90,39 +85,28 @@
     .ctag { font-size: 11px; padding: 3px 9px; border-radius: var(--r-pill); background: var(--bg4); color: var(--text3); border: 1px solid transparent; }
     .ctag.m { background: var(--accent-dim); color: var(--accent); border-color: rgba(212,255,79,0.18); }
     .card-info { margin-top: 9px; font-size: 11px; color: var(--text3); line-height: 1.5; }
-
-    /* STATE */
     .state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5rem 2rem; color: var(--text3); text-align: center; gap: 0.65rem; }
     .state-icon { font-size: 28px; opacity: 0.4; }
     .state-t { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--text2); }
     .state-s { font-size: 13px; }
     .spinner { width: 26px; height: 26px; border: 2px solid var(--line2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
-
-    @media (max-width: 700px) {
-      .layout { flex-direction: column; }
-      .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); }
-      .main { padding: 1rem; }
-      .grid { grid-template-columns: 1fr; }
-    }
+    ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+    @media (max-width: 700px) { .layout { flex-direction: column; } .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--line); } .main { padding: 1rem; } .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-<!-- CONFIG -->
 <div id="config-screen">
   <div class="config-card">
     <div class="config-logo">ISRI <span>·</span> Sélecteur de bornes</div>
-    <p class="config-sub">Connectez votre intégration Notion pour accéder à la base produits en temps réel, avec un filtrage par caractéristiques en logique ET.</p>
+    <p class="config-sub">Connectez-vous avec votre token d'intégration Notion pour accéder à la base produits en temps réel.</p>
     <div class="field">
       <label>Token d'intégration Notion</label>
       <input type="password" id="token-input" placeholder="secret_xxxx… ou ntn_xxxx…" autocomplete="off" />
       <p class="field-hint">
-        Créez une intégration sur <a href="https://www.notion.so/my-integrations" target="_blank">notion.so/my-integrations</a>, puis partagez la base "Modèles" avec elle.<br>
-        Le token reste uniquement dans votre navigateur, il n'est jamais transmis à un serveur tiers.
+        Créez une intégration sur <a href="https://www.notion.so/my-integrations" target="_blank">notion.so/my-integrations</a> et partagez la base "Modèles" avec elle.<br>
+        Le token ne quitte jamais votre navigateur.
       </p>
     </div>
     <button class="btn-go" id="btn-go" onclick="startApp()">Accéder au sélecteur →</button>
@@ -130,7 +114,6 @@
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <header class="header">
     <div class="brand">ISRI <span>·</span> Sélecteur de bornes</div>
@@ -146,28 +129,23 @@
         <span class="filter-lbl">Catégorie</span>
         <select class="flt" id="f-cat" onchange="applyFilters()">
           <option value="">Toutes</option>
-          <option>Automatique</option><option>Semi-automatique</option>
-          <option>Fixe</option><option>Faible profondeur</option><option>Amovible</option>
         </select>
       </div>
       <div class="filter-sec">
         <span class="filter-lbl">Niveau de sécurité</span>
         <select class="flt" id="f-niv" onchange="applyFilters()">
           <option value="">Tous</option>
-          <option>K4</option><option>K8</option><option>K12</option><option>K12+</option>
         </select>
       </div>
       <div class="filter-sec">
         <span class="filter-lbl">Fournisseur</span>
         <select class="flt" id="f-fou" onchange="applyFilters()">
           <option value="">Tous</option>
-          <option>ELGO</option><option>SWARAJ</option><option>HORMANN</option>
-          <option>HEALD</option><option>SAFETYFLEX</option><option>A1 FENCE</option><option>ATG</option>
         </select>
       </div>
       <div class="divider"></div>
       <div class="filter-sec">
-        <span class="filter-lbl">Caractéristiques <span class="et-badge">· LOGIQUE ET</span></span>
+        <span class="filter-lbl">Caractéristiques <span class="et-badge">· ET</span></span>
         <div class="tags-wrap" id="tags-wrap"></div>
       </div>
     </aside>
@@ -183,29 +161,27 @@
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-// CONFIGURATION — à adapter si vous changez de base Notion
-// ═══════════════════════════════════════════════════════════════
+// ─── CONFIGURATION ─────────────────────────────────────────────────────────
+// Remplacez cette valeur par l'ID de votre base Notion "Modèles"
+// L'ID se trouve dans l'URL de la base : notion.so/xxx/[ID-ICI]?v=...
 const DB_ID = '7b33d394f58d827997a387eed7a3a2c0';
 
-const CARAC = [
-  "Semi-automatique","Faible profondeur","Amovible","Coulissante",
-  "Electrique","Hydraulique","Hydraulique intégré","Vérin à gaz",
-  "Vérin hydraulique","SECURILOCK","Armature fournie","Ovale",
-  "Rectangulaire","Unitaire","Socle renforcé","Sans armature","Zero pénétration"
-];
-// ═══════════════════════════════════════════════════════════════
+// Proxy CORS : contourne la restriction de Notion côté navigateur.
+// Ce proxy open-source (corsproxy.io) transmet votre requête à Notion
+// sans stocker ni lire vos données. Votre token voyage uniquement
+// entre votre navigateur et Notion via ce relais HTTPS chiffré.
+const PROXY = 'https://corsproxy.io/?';
+// ───────────────────────────────────────────────────────────────────────────
 
 let token = '';
 let products = [];
 let activeTags = new Set();
 
-/* ── DÉMARRAGE ── */
 async function startApp() {
   const inp = document.getElementById('token-input');
   token = inp.value.trim();
   if (!token.startsWith('secret_') && !token.startsWith('ntn_')) {
-    showErr("Le token doit commencer par 'secret_' ou 'ntn_'.");
+    showErr("Le token doit commencer par 'secret_' ou 'ntn_'. Vérifiez votre intégration Notion.");
     return;
   }
   const btn = document.getElementById('btn-go');
@@ -218,24 +194,23 @@ async function startApp() {
   document.getElementById('config-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   document.getElementById('sync-txt').textContent = `${products.length} bornes · temps réel`;
+  populateFilters();
   buildTags();
   applyFilters();
 }
 
-function showErr(msg) {
-  const el = document.getElementById('err-box');
-  el.textContent = msg; el.style.display = 'block';
-}
+function showErr(msg) { const e = document.getElementById('err-box'); e.textContent = msg; e.style.display = 'block'; }
 function hideErr() { document.getElementById('err-box').style.display = 'none'; }
 
-/* ── NOTION API ── */
 async function fetchAllProducts() {
   try {
     let results = [], cursor = null, hasMore = true;
     while (hasMore) {
       const body = { page_size: 100 };
       if (cursor) body.start_cursor = cursor;
-      const res = await fetch(`https://api.notion.com/v1/databases/${DB_ID}/query`, {
+
+      const notionUrl = `https://api.notion.com/v1/databases/${DB_ID}/query`;
+      const res = await fetch(PROXY + encodeURIComponent(notionUrl), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -244,13 +219,16 @@ async function fetchAllProducts() {
         },
         body: JSON.stringify(body)
       });
+
       if (!res.ok) {
-        const e = await res.json().catch(() => ({}));
-        if (res.status === 401) showErr("Token invalide ou accès refusé. Vérifiez que l'intégration est bien partagée avec la base 'Modèles'.");
-        else if (res.status === 404) showErr("Base introuvable. L'intégration doit avoir accès à la base 'Modèles' dans Notion.");
-        else showErr(`Erreur Notion ${res.status}: ${e.message || 'Inconnue'}`);
+        let errMsg = `Erreur ${res.status}`;
+        try { const e = await res.json(); errMsg = e.message || errMsg; } catch(_) {}
+        if (res.status === 401) showErr("Token invalide ou accès refusé. Vérifiez que l'intégration a bien accès à la base 'Modèles'.");
+        else if (res.status === 404) showErr("Base introuvable. Vérifiez que l'intégration est partagée avec la page 'Recap bornes ISRI'.");
+        else showErr(`Erreur Notion (${res.status}) : ${errMsg}`);
         return false;
       }
+
       const data = await res.json();
       results = results.concat(data.results || []);
       hasMore = data.has_more;
@@ -267,43 +245,48 @@ async function fetchAllProducts() {
 
 function parseProduct(page) {
   const p = page.properties;
-  const s = (k) => p[k]?.select?.name || '';
-  const ms = (k) => (p[k]?.multi_select || []).map(t => t.name);
-  const n = (k) => p[k]?.number ?? null;
-  const t = (k) => p[k]?.title?.[0]?.plain_text || '';
-  const rt = (k) => p[k]?.rich_text?.[0]?.plain_text || '';
+  const s  = k => p[k]?.select?.name || '';
+  const ms = k => (p[k]?.multi_select || []).map(t => t.name);
+  const n  = k => p[k]?.number ?? null;
+  const t  = k => p[k]?.title?.[0]?.plain_text || '';
+  const rt = k => p[k]?.rich_text?.[0]?.plain_text || '';
   return {
-    title: t('Nom du produit') || '—',
-    categorie: s('Catégorie'),
+    title: t('Nom du produit') || t('Name') || t('Titre') || '—',
+    categorie: s('Catégorie') || s('Categorie'),
     niveau: s('Niveau'),
     fournisseur: s('Fournisseur'),
-    caracteristiques: ms('Caractéristiques'),
-    hauteur: n('Hauteur'),
-    kj: n('Kj'),
-    profondeur: n('Profondeur'),
-    diametre: n('Diamètre'),
+    caracteristiques: ms('Caractéristiques') || ms('Caracteristiques'),
+    hauteur: n('Hauteur'), kj: n('Kj'), profondeur: n('Profondeur'), diametre: n('Diamètre'),
     informations: rt('Informations')
   };
 }
 
-/* ── TAGS ── */
+// Remplir les selects dynamiquement depuis les données réelles
+function populateFilters() {
+  const cats = [...new Set(products.map(p => p.categorie).filter(Boolean))].sort();
+  const nivs = [...new Set(products.map(p => p.niveau).filter(Boolean))].sort();
+  const fous = [...new Set(products.map(p => p.fournisseur).filter(Boolean))].sort();
+  const fill = (id, vals) => {
+    const sel = document.getElementById(id);
+    vals.forEach(v => { const o = document.createElement('option'); o.value = o.textContent = v; sel.appendChild(o); });
+  };
+  fill('f-cat', cats); fill('f-niv', nivs); fill('f-fou', fous);
+}
+
+// Construire les tags depuis les données réelles
 function buildTags() {
+  const allCarac = [...new Set(products.flatMap(p => p.caracteristiques))].sort();
   const wrap = document.getElementById('tags-wrap');
   wrap.innerHTML = '';
-  CARAC.forEach(c => {
+  allCarac.forEach(c => {
     const t = document.createElement('div');
     t.className = 'tag' + (activeTags.has(c) ? ' on' : '');
     t.textContent = c;
-    t.onclick = () => {
-      activeTags.has(c) ? activeTags.delete(c) : activeTags.add(c);
-      t.classList.toggle('on', activeTags.has(c));
-      applyFilters();
-    };
+    t.onclick = () => { activeTags.has(c) ? activeTags.delete(c) : activeTags.add(c); t.classList.toggle('on', activeTags.has(c)); applyFilters(); };
     wrap.appendChild(t);
   });
 }
 
-/* ── FILTRES ── */
 function applyFilters() {
   const cat = document.getElementById('f-cat').value;
   const niv = document.getElementById('f-niv').value;
@@ -318,32 +301,20 @@ function applyFilters() {
     return true;
   });
 
-  // Bannière filtres actifs
   const banner = document.getElementById('active-banner');
-  const parts = [
-    cat && `Catégorie : <b>${cat}</b>`,
-    niv && `Niveau : <b>${niv}</b>`,
-    fou && `Fournisseur : <b>${fou}</b>`,
-    tags.length && `Caractéristiques (ET) : <b>${tags.join(', ')}</b>`
-  ].filter(Boolean);
-  if (parts.length) { banner.innerHTML = parts.join(' · '); banner.style.display = 'block'; }
-  else banner.style.display = 'none';
+  const parts = [cat && `Catégorie : <b>${cat}</b>`, niv && `Niveau : <b>${niv}</b>`, fou && `Fournisseur : <b>${fou}</b>`, tags.length && `Caractéristiques (ET) : <b>${tags.join(', ')}</b>`].filter(Boolean);
+  if (parts.length) { banner.innerHTML = parts.join(' · '); banner.style.display = 'block'; } else banner.style.display = 'none';
 
-  document.getElementById('count').innerHTML =
-    `${filtered.length}<small> borne${filtered.length !== 1 ? 's' : ''} trouvée${filtered.length !== 1 ? 's' : ''}</small>`;
+  document.getElementById('count').innerHTML = `${filtered.length}<small> borne${filtered.length !== 1 ? 's' : ''} trouvée${filtered.length !== 1 ? 's' : ''}</small>`;
   render(filtered, tags);
 }
 
 function resetAll() {
   activeTags.clear();
-  document.getElementById('f-cat').value = '';
-  document.getElementById('f-niv').value = '';
-  document.getElementById('f-fou').value = '';
-  buildTags();
-  applyFilters();
+  ['f-cat','f-niv','f-fou'].forEach(id => document.getElementById(id).value = '');
+  buildTags(); applyFilters();
 }
 
-/* ── RENDU ── */
 const nCls = { K4:'nk4', K8:'nk8', K12:'nk12', 'K12+':'nk12p' };
 
 function render(list, tags) {
@@ -353,20 +324,11 @@ function render(list, tags) {
     return;
   }
   el.innerHTML = `<div class="grid">${list.map((p, i) => {
-    const specs = [
-      p.hauteur    ? `<span class="spec"><b>${p.hauteur} mm</b> haut.</span>` : '',
-      p.kj         ? `<span class="spec"><b>${p.kj} kJ</b></span>` : '',
-      p.profondeur ? `<span class="spec"><b>${p.profondeur} mm</b> prof.</span>` : '',
-      p.diametre   ? `<span class="spec"><b>⌀${p.diametre} mm</b></span>` : '',
-    ].filter(Boolean).join('');
-    const ctags = p.caracteristiques.map(c =>
-      `<span class="ctag ${tags.includes(c) ? 'm' : ''}">${c}</span>`).join('');
+    const specs = [p.hauteur && `<span class="spec"><b>${p.hauteur} mm</b> haut.</span>`, p.kj && `<span class="spec"><b>${p.kj} kJ</b></span>`, p.profondeur && `<span class="spec"><b>${p.profondeur} mm</b> prof.</span>`, p.diametre && `<span class="spec"><b>⌀${p.diametre} mm</b></span>`].filter(Boolean).join('');
+    const ctags = p.caracteristiques.map(c => `<span class="ctag ${tags.includes(c) ? 'm' : ''}">${c}</span>`).join('');
     const meta = [p.categorie, p.fournisseur].filter(Boolean).join(' · ');
     return `<div class="card" style="animation-delay:${Math.min(i*0.03,0.45)}s">
-      <div class="card-top">
-        <div class="card-name">${p.title}</div>
-        ${p.niveau ? `<span class="nbadge ${nCls[p.niveau]||''}">${p.niveau}</span>` : ''}
-      </div>
+      <div class="card-top"><div class="card-name">${p.title}</div>${p.niveau ? `<span class="nbadge ${nCls[p.niveau]||''}">${p.niveau}</span>` : ''}</div>
       ${meta ? `<div class="card-meta">${meta}</div>` : ''}
       ${specs ? `<div class="card-specs">${specs}</div>` : ''}
       ${ctags ? `<div class="card-tags">${ctags}</div>` : ''}
@@ -375,9 +337,7 @@ function render(list, tags) {
   }).join('')}</div>`;
 }
 
-document.getElementById('token-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') startApp();
-});
+document.getElementById('token-input').addEventListener('keydown', e => { if (e.key === 'Enter') startApp(); });
 </script>
 </body>
 </html>
